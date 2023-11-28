@@ -61,10 +61,30 @@ footer {
 }
 
 .image-container {
+display: flex;
 position: relative;
 overflow: hidden;
 border-radius: 10px;
 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.box{
+flex: 1;
+padding: 20px;
+margin: 10px;
+border-radius: 10px;
+background-color: #dedcdc;
+height: auto;
+max-width: 100%;
+}
+.box2{
+flex: 1;
+padding: 20px;
+margin: 10px;
+border-radius: 10px;
+background-color: #333;
+height: auto;
+max-width: 100%;
 }
 
 img {
@@ -74,6 +94,17 @@ width: 80%;
 height: auto;
 display: block;
 }
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  [class*="col-"] {
+    float: left;
+    padding: 15px;
+  }
 
 /* For mobile phones: */
 [class*="col-"] {
