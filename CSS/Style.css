@@ -47,12 +47,6 @@ section p {
     color: #555;
 }
 
-.container {
-    width: 100%;
-    display: flex;
-}
-
-
 footer {
     background-color: #333;
     color: #fff;
@@ -61,11 +55,22 @@ footer {
 }
 
 .image-container {
+display: flex;   
 position: relative;
 overflow: hidden;
 border-radius: 10px;
 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.box{
+    flex: 1;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #dedcdc;
+    height: auto;
+    max-width: 100%;
+    }
 
 img {
 margin-top: 20px;
@@ -74,6 +79,13 @@ width: 80%;
 height: auto;
 display: block;
 }
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
 
 /* For mobile phones: */
 [class*="col-"] {
