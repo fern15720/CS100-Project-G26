@@ -32,6 +32,7 @@ nav a:hover {
 }
 
 section {
+    background-color: #555;
     padding: 40px;
     text-align: center;
 }
@@ -54,16 +55,17 @@ footer {
     text-align: center;
 }
 
+
+
 .image-container {
 display: flex;   
 position: relative;
-overflow: hidden;
+overflow: auto;
 border-radius: 10px;
 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .box{
-    flex: 1;
     padding: 20px;
     margin: 10px;
     border-radius: 10px;
@@ -73,11 +75,15 @@ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
 img {
-margin-top: 20px;
-margin-left: 40px;
-width: 80%;
-height: auto;
+margin-top: 10px;
 display: block;
+max-width: 100%; 
+height: auto; 
+border-radius: 50%; 
+object-fit: cover; 
+
+
+
 }
 
 .row::after {
@@ -85,7 +91,6 @@ display: block;
     clear: both;
     display: table;
   }
-
 
 /* For mobile phones: */
 [class*="col-"] {
