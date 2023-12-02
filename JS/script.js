@@ -10,11 +10,11 @@ const config = {
   backendUrl: "http://localhost:8000/", // Default backend URL
 };
 const port = 8000;
-
 // Function to validate Firstname and Lastname
 function validateName() {
   const fullnameInput = document.getElementById("fullname");
   const names = fullnameInput.value.trim().split(" ");
+  const fullnamePattern = /^[A-Z][a-z]+ [A-Z][a-z]+$/;
   const errorElement = document.getElementById("fullnameError");
 
   if (names.length !== 2) {
@@ -23,13 +23,21 @@ function validateName() {
   } else {
     errorElement.textContent = ""; // Clear the error message when valid
   }
+
+  if (!fullnamePattern.test(fullnameInput.value)) {
+    errorElement.textContent = "Please enter the first letter in capital letter.";
+    return false;
+  } else {
+    errorElement.textContent = ""; // Clear the error message when valid
+  }
+
   return true;
 }
 
 // Function to validate Student ID
 function validateStudentID() {
   const studentIDInput = document.getElementById("studentID");
-  const studentIDPattern = /^\d{10}$/;
+  const studentIDPattern = /^[6][0-9][0-2][0-9]{7}$/;
   const errorElement = document.getElementById("studentIDError");
 
   if (!studentIDPattern.test(studentIDInput.value)) {
@@ -62,12 +70,13 @@ function validateFormOnInput() {
   validateName();
   validateStudentID();
   validateEmail();
+  
 }
 
 // Function to fetch activity types from the backend
 async function fetchActivityTypes() {
   try {
-    const response = await fetch(`http://${window.location.hostname}:${port}/getActivityType`);
+    const response = await fetch(config.backendUrl + "getActivityType");
     if (response.ok) {
       const data = await response.json();
       return data;
@@ -119,12 +128,16 @@ async function submitForm(event) {
     return;
   }
 
+  
+
   // Create the data object to send to the backend
   const formData = new FormData(event.target);
   const data = {
     first_name: formData.get("fullname").split(" ")[0],
     last_name: formData.get("fullname").split(" ")[1],
     student_id: parseInt(formData.get("studentID")),
+    faculty: parseInt(formData.get("faculty")),
+    major: formData.get("major"),
     email: formData.get("email"),
     title: formData.get("workTitle"),
     type_of_work_id: parseInt(formData.get("activityType")),
@@ -181,3 +194,5 @@ document
   .getElementById("studentID")
   .addEventListener("input", validateStudentID);
 document.getElementById("email").addEventListener("input", validateEmail);
+
+
