@@ -153,7 +153,7 @@ async function submitForm(event) {
 
   try {
     // Send data to the backend using POST request
-    const response = await fetch(`http://${window.location.hostname}:${port}/record`, {
+    const response = await fetch(config.backendUrl + "getActivityType", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
