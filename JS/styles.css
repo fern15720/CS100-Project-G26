@@ -9,6 +9,7 @@
 /* Set the font family for the entire body */
 body {
   font-family: Arial, sans-serif;
+  background-color: rgb(57, 57, 57)
 }
 
 /* Styling for the form container */
@@ -16,7 +17,7 @@ body {
   max-width: 600px;
   margin: 20px auto;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #ffffff;
   border-radius: 5px;
 }
 
@@ -24,6 +25,7 @@ body {
 .form-container h1 {
   text-align: center;
   margin-bottom: 20px;
+  color: rgb(255, 255, 255);
 }
 
 /* Styling for each form group */
@@ -35,6 +37,7 @@ body {
 .form-group label {
   display: block;
   font-weight: bold;
+  color: cornflowerblue;
 }
 
 /* Styling for various form input types */
@@ -89,4 +92,8 @@ body {
   display: block;
   margin-top: 5px;
 }
+
+input[type="submit"]:hover 
+{   background-color: #3a8a3e; }  
+input {background-color: #dddddb;    color: rgb(74, 27, 97); }
 
