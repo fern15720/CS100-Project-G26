@@ -7,7 +7,7 @@
 */
 
 const config = {
-  backendUrl: "http://localhost:8000/", // Default backend URL
+  backendUrl: "http://localhost:80/", // Default backend URL
 };
 const port = 8000;
 // Function to validate Firstname and Lastname
@@ -65,18 +65,29 @@ function validateEmail() {
   return true;
 }
 
+//Function to validate Description
+function validateDescription() {
+  var Description = document.getElementById('description').value;
+
+if (fieldValue === '') {
+    alert('Please enter information in the field');
+}
+}
+
 // Function to validate form inputs on user input
 function validateFormOnInput() {
   validateName();
   validateStudentID();
   validateEmail();
+  validateDescription();
   
 }
 
 // Function to fetch activity types from the backend
 async function fetchActivityTypes() {
   try {
-    const response = await fetch(config.backendUrl + "getActivityType");
+    const response = await fetch(`http://${window.location.hostname}:${port}/getActivityType`);
+    //const response = await fetch(config.backendUrl + "getActivityType");
     if (response.ok) {
       const data = await response.json();
       return data;
@@ -109,7 +120,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 // Function to submit the form
-// Function to submit the form
 async function submitForm(event) {
   event.preventDefault();
 
@@ -137,7 +147,6 @@ async function submitForm(event) {
     last_name: formData.get("fullname").split(" ")[1],
     student_id: parseInt(formData.get("studentID")),
     faculty: parseInt(formData.get("faculty")),
-    major: formData.get("major"),
     email: formData.get("email"),
     title: formData.get("workTitle"),
     type_of_work_id: parseInt(formData.get("activityType")),
@@ -153,7 +162,7 @@ async function submitForm(event) {
 
   try {
     // Send data to the backend using POST request
-    const response = await fetch(config.backendUrl + "getActivityType", {
+    const response = await fetch(`http://${window.location.hostname}:${port}/record`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -195,4 +204,26 @@ document
   .addEventListener("input", validateStudentID);
 document.getElementById("email").addEventListener("input", validateEmail);
 
+// Append the image element to the resultContainer
+const resultContainer = document.getElementById("resultContainer");
+resultContainer.innerHTML = ""; // Clear existing content
 
+// แสดงผลข้อมูลที่ Element ที่มีอยู่ในหน้าเว็บ
+resultContainer.innerHTML += `
+
+<br>
+<p>Firstname: ${first_name}</p>
+<p>Lastname: ${last_name}</p>
+<p>Student ID: ${student_id}</p>
+<p>Faculty: ${faculty}</p>
+<p>Email: ${email}</p>
+<p>Work/Activity Title: ${title}</p>
+<p>Type of Work ID: ${type_of_work_id}</p>
+<p>Academic Year: ${academic_year}</p>
+<p>Semester: ${semester}</p>
+<p>Start Date/Time: ${start_date}</p>
+<p>End Date/Time: ${end_date}</p>
+<p>Location: ${location}</p>
+<p>Description: ${description}</p>
+
+`;
