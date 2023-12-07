@@ -1,119 +1,121 @@
-/*
-  File: styles.css
-  Author: CS100 Team
-  Date Created: 23 July 2023
-  Copyright: CSTU
-  Description: CSS code of CSTU Passport that validate with JS
-*/
-
-/* Set the font family for the entire body */
-body {
-  font-family: Arial, sans-serif;
-  background-color: rgb(95, 94, 92);
-}
-
-/* Styling for the form container */
-.form-container {
-  color: rgb(95, 94, 92);
-  background-color: rgb(242, 242, 242);
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-/* Center-align the heading and add margin at the bottom */
-.form-container h1 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-/* Styling for each form group */
-.form-group {
-  margin-bottom: 20px;
-}
-
-/* Styling for form group labels */
-.form-group label {
+.error{
   display: block;
-  font-weight: bold;
+  color: red;
+  font-size: 12px;
 }
-
-/* Styling for various form input types */
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group select,
-.form-group textarea,
-.form-group input[type="datetime-local"] {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+/*-----------------------------------------*/
+*{
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-/* Allow vertical resizing for textareas */
-.form-group textarea {
-  resize: vertical;
-}
-
-/* Styling for select dropdowns */
-.form-group select {
-  width: 100%;
-}
-
-/* Styling for the submit button */
-.form-group button[type="submit"] {
-  background-color: rgb(33, 33, 33);
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* Styling for small helper text */
-.form-group small {
-  font-size: 12px;
-  color: #888;
-}
-
-/* New styles for error messages */
-
-/* Position the error message relatively within the form group */
-.form-group {
-  position: relative;
-}
-
-/* Styling for error messages */
-.error {
-  color: red;
-  display: block;
-  margin-top: 5px;
-}
-#resultContainer {
-  color: rgb(240, 240, 240);
-  margin-top: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #2c2c2c;
+body {
+  background-image: url(../img/bgForm.jpg);
+  font-family: 'Hedvig Letters Serif', serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: left;
-}
-#resultContainer p {
-  margin: 5px 0;
-}
-#resultContainer img {
-  max-width: 400px;
-  height: auto;
-  border: 5px solid rgb(75, 75, 75);
-}
-body {
-  background: linear-gradient(to bottom,rgb(249, 249, 249) 90%,#2c2c2c 10%);
+  min-height: 100vh;
 }
 
+
+.form-container{
+  z-index: 1;
+  width: 600px;
+  padding: 20px;
+  margin: 3rem 0;
+  border-radius: 30px;
+  border: solid #333333 5px;
+  box-shadow: 0 2px 10px rgb(255, 255, 255);
+  background-color: hsl(0, 0%, 86%);
+}
+
+h1 {
+  font-size: 40px;
+  text-align: center;
+  margin: 0 0 40px;
+  color: #663399;
+}
+.form-group{
+  margin-bottom: 20px;
+}
+.form-group label{
+  font-size: 20px;
+  font-weight: 600;
+  color: #44140c;
+  display: block;
+  margin: 5px;
+}
+.form-group input,select,textarea{
+  border: 1px solid #094321;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-size: 13px;
+  transition: all .2s;
+}
+.form-group small{
+  color: rgb(169, 172, 175);
+  font-size: 10px;
+}
+.form-group input:focus{
+  outline: 0;
+  border-color: #45e494;
+}
+.form button{
+  cursor: pointer;
+  background-color: rgb(0, 113, 75);
+  border: 2px solid rgb(0, 113, 75);
+  color: aliceblue;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 20px;
+  width: 100%;
+}
+.form-group input[type="submit"]:hover{
+  background-color: #62ffb1;
+}
+/*------------------------------------------*/
+#submittedData{
+  z-index: 1;
+  display: none;
+  width: 600px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 30px;
+  border: solid  #44C662 5px;
+  box-shadow: 0 2px 10px #E3F3AC;
+  background-color: rgb(255, 255, 255);
+}
+#submittedData h2{
+  padding: 5px;
+  margin-bottom: 15px;
+  border-radius: 20px;
+  color: #fff;
+}
+#DataUser h2{
+  background-color:#006633;
+  box-shadow: 0 2px 10px #13bb67;
+}
+#DateActivity h2{
+  background-color:#DF2E38;
+  box-shadow: 0 2px 10px #ff313b;
+}
+#submittedData li{
+  text-align: left;
+  padding-bottom: 10px;
+  list-style: none;
+}
+#DataUser,#DateActivity{
+  margin-bottom: 2rem;
+}
+#DataUser ul,#DateActivity ul{
+  margin: 0 5rem;
+}
+#Dateimage img{
+  border-radius: 20px;
+}
+/*------------------------------------------*/

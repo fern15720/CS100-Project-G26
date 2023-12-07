@@ -1,50 +1,14 @@
-/*
-  File: script.js
-  Author: CS100 Team
-  Date Created: 23 July 2023
-  Copyright: CSTU
-  Description: JS code of CSTU Passport that validate with JS
-*/
-
-const config = {
-  backendUrl: "http://localhost:80/", // Default backend URL
-};
-const port = 8000;
 // Function to validate Firstname and Lastname
 function validateName() {
-  const fullnameInput = document.getElementById("fullname");
+  const fullnameInput = document.getElementById("fullname")
   const names = fullnameInput.value.trim().split(" ");
   const fullnamePattern = /^[A-Z][a-z]+ [A-Z][a-z]+$/;
   const errorElement = document.getElementById("fullnameError");
-
   if (names.length !== 2) {
-    errorElement.textContent = "Please enter both your Firstname and Lastname.";
-    return false;
+      errorElement.textContent = "Please enter both your Firstname and Lastname.";
+      return false;
   } else {
-    errorElement.textContent = ""; // Clear the error message when valid
-  }
-
-  if (!fullnamePattern.test(fullnameInput.value)) {
-    errorElement.textContent = "Please enter the first letter in capital letter.";
-    return false;
-  } else {
-    errorElement.textContent = ""; // Clear the error message when valid
-  }
-
-  return true;
-}
-
-// Function to validate Student ID
-function validateStudentID() {
-  const studentIDInput = document.getElementById("studentID");
-  const studentIDPattern = /^[6][0-9][0-2][0-9]{7}$/;
-  const errorElement = document.getElementById("studentIDError");
-
-  if (!studentIDPattern.test(studentIDInput.value)) {
-    errorElement.textContent = "Please enter a 10-digit Student ID.";
-    return false;
-  } else {
-    errorElement.textContent = ""; // Clear the error message when valid
+      errorElement.textContent = "";
   }
   return true;
 }
@@ -54,143 +18,32 @@ function validateEmail() {
   const emailInput = document.getElementById("email");
   const emailPattern = /^.+@dome\.tu\.ac\.th$/;
   const errorElement = document.getElementById("emailError");
-
   if (!emailPattern.test(emailInput.value)) {
-    errorElement.textContent =
+      errorElement.textContent =
       "Please provide a valid university email in the format 'xxx.yyy@dome.tu.ac.th'.";
-    return false;
+      return false;
   } else {
     errorElement.textContent = ""; // Clear the error message when valid
   }
   return true;
 }
 
-//Function to validate Description
-function validateDescription() {
-  var Description = document.getElementById('description').value;
-
-if (fieldValue === '') {
-    alert('Please enter information in the field');
-}
-}
-
+//----------------------------------------------------------
 // Function to validate form inputs on user input
 function validateFormOnInput() {
   validateName();
   validateStudentID();
+  validateGender();
   validateEmail();
-  validateDescription();
-  
 }
 
-// Function to fetch activity types from the backend
-async function fetchActivityTypes() {
-  try {
-    const response = await fetch(`http://${window.location.hostname}:${port}/getActivityType`);
-    //const response = await fetch(config.backendUrl + "getActivityType");
-    if (response.ok) {
-      const data = await response.json();
-      return data;
-    } else {
-      console.error("Failed to fetch activity types.");
-      return [];
-    }
-  } catch (error) {
-    console.error("An error occurred while fetching activity types:", error);
-    return [];
-  }
-}
-
-// Function to populate activity types in the select element
-function populateActivityTypes(activityTypes) {
-  const activityTypeSelect = document.getElementById("activityType");
-
-  for (const type of activityTypes) {
-    const option = document.createElement("option");
-    option.value = type.id;
-    option.textContent = type.value;
-    activityTypeSelect.appendChild(option);
-  }
-}
-
-// Event listener when the page content has finished loading
-document.addEventListener("DOMContentLoaded", async () => {
-  const activityTypes = await fetchActivityTypes();
-  populateActivityTypes(activityTypes);
-});
 
 // Function to submit the form
 async function submitForm(event) {
   event.preventDefault();
-
   // Validate form inputs before submission
-  if (!validateName() || !validateStudentID() || !validateEmail()) {
-    return;
-  }
-
-  const startDateInput = document.getElementById("startDate").value;
-  const endDateInput = document.getElementById("endDate").value;
-  const startDate = new Date(startDateInput);
-  const endDate = new Date(endDateInput);
-
-  if (endDate <= startDate) {
-    alert("End datetime should be after the start datetime.");
-    return;
-  }
-
-  
-
-  // Create the data object to send to the backend
-  const formData = new FormData(event.target);
-  const data = {
-    first_name: formData.get("fullname").split(" ")[0],
-    last_name: formData.get("fullname").split(" ")[1],
-    student_id: parseInt(formData.get("studentID")),
-    faculty: parseInt(formData.get("faculty")),
-    email: formData.get("email"),
-    title: formData.get("workTitle"),
-    type_of_work_id: parseInt(formData.get("activityType")),
-    academic_year: parseInt(formData.get("academicYear")) - 543,
-    semester: parseInt(formData.get("semester")),
-    start_date: formData.get("startDate"),
-    end_date: formData.get("endDate"),
-    location: formData.get("location"),
-    description: formData.get("description")
-  };
-
-  console.log(data);
-
-  try {
-    // Send data to the backend using POST request
-    const response = await fetch(`http://${window.location.hostname}:${port}/record`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (response.ok) {
-      const responseData = await response.json();
-      console.log("Form data submitted successfully!");
-
-      // Format JSON data for display
-      const formattedData = Object.entries(responseData.data)
-        .map(([key, value]) => `"${key}": "${value}"`)
-        .join("\n");
-
-      // Display success message with formatted data
-      alert(responseData.message + "\n" + formattedData);
-
-      document.getElementById("myForm").reset();
-    } else {
-      console.error("Failed to submit form data.");
-
-      // Display error message
-      alert("Failed to submit form data. Please try again.");
-    }
-  } catch (error) {
-    console.error("An error occurred while submitting form data:", error);
+  if(!validateName() || !validateStudentID() || !validateEmail()){
+      return;
   }
 }
 
@@ -199,31 +52,87 @@ document.getElementById("myForm").addEventListener("submit", submitForm);
 
 // Event listeners for input validation on user input
 document.getElementById("fullname").addEventListener("input", validateName);
-document
-  .getElementById("studentID")
-  .addEventListener("input", validateStudentID);
+document.getElementById("studentID").addEventListener("input", validateStudentID);
 document.getElementById("email").addEventListener("input", validateEmail);
 
-// Append the image element to the resultContainer
-const resultContainer = document.getElementById("resultContainer");
-resultContainer.innerHTML = ""; // Clear existing content
+//----------------------------------------------------------
+// Function to validate Student ID ADD 1 JS*** 
+function validateStudentID() {
+  const studentIDInput = document.getElementById("studentID");
+  const studentIDPattern = /^[6][0-9][0-2][0-9]{7}$/; 
+  const errorElement = document.getElementById("studentIDError");
+      if (!studentIDPattern.test(studentIDInput.value)) {
+      errorElement.textContent = "Please enter a 10-digit Student ID starting with '66'.";
+      return false;
+      } else { errorElement.textContent = ""; }
+  return true;
+  }
 
-// แสดงผลข้อมูลที่ Element ที่มีอยู่ในหน้าเว็บ
-resultContainer.innerHTML += `
 
-<br>
-<p>Firstname: ${first_name}</p>
-<p>Lastname: ${last_name}</p>
-<p>Student ID: ${student_id}</p>
-<p>Faculty: ${faculty}</p>
-<p>Email: ${email}</p>
-<p>Work/Activity Title: ${title}</p>
-<p>Type of Work ID: ${type_of_work_id}</p>
-<p>Academic Year: ${academic_year}</p>
-<p>Semester: ${semester}</p>
-<p>Start Date/Time: ${start_date}</p>
-<p>End Date/Time: ${end_date}</p>
-<p>Location: ${location}</p>
-<p>Description: ${description}</p>
+// Function to validation ADD 3 JS***
+function validation(){
+  if(!validateName() || !validateStudentID() || !validateEmail()){
+      return false;
+  }
+  showDetaUser();
+  showDetaActivity();
+  showDateimage();
+}
 
-`;
+// Function to showDetaUser ADD 4 JS***
+function showDetaUser(){
+  document.getElementById('submittedData').style.display='block';
+  var DataUser = {
+      Name: document.getElementById("fullname").value,
+      StudentID: document.getElementById("studentID").value,
+      Email: document.getElementById("email").value,
+      Faculty: document.getElementById("Faculty of").value,
+  };
+  var formattedData = '<h2>USER</h2><ul>';
+  for (var key in DataUser) {
+      formattedData += '<li><strong>' + key + ':</strong> ' + DataUser[key] + '</li>';
+  }
+  formattedData += '</ul>';
+  document.getElementById('DataUser').innerHTML = formattedData;
+}
+
+// Function to showDetaActivity ADD 5 JS***
+function showDetaActivity(){
+  var DetaActivity = {
+      WorkTitle: document.getElementById("workTitle").value,
+      ActivityType: document.getElementById("activityType").value,
+      AcademicYear: document.getElementById("academicYear").value,
+      Semester: document.getElementById("semester").value,
+      startDate: document.getElementById("startDate").value,
+      location: document.getElementById("location").value
+  };
+  var formattedData = '<h2>ACTIVITY</h2><ul>';
+  for (var key in DetaActivity) {
+      if (DetaActivity[key] !== undefined && DetaActivity[key] !== ""){
+          formattedData += '<li><strong>' + key + ':</strong> ' + DetaActivity[key] + '</li>';
+      }else {
+          formattedData += '';
+      }
+      
+  }
+  formattedData += '</ul>';
+  document.getElementById('DateActivity').innerHTML = formattedData;
+}
+
+// Function to showDateimage ADD 6 JS***
+function showDateimage(){
+  var input = document.getElementById("imageInput");
+  var imageContainer = document.getElementById("Dateimage");  
+  if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+          
+          var imageElement = document.createElement("img");
+          imageElement.src = e.target.result;
+          imageElement.width = 300; 
+          imageContainer.innerHTML = ""; 
+          imageContainer.appendChild(imageElement);
+      };
+      reader.readAsDataURL(input.files[0]);
+  }
+}
