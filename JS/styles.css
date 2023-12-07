@@ -9,7 +9,12 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
 body {
   background-image: url(../img/bgForm.jpg);
   font-family: 'Hedvig Letters Serif', serif;
@@ -20,36 +25,32 @@ body {
   min-height: 100vh;
 }
 
-
 .form-container{
   z-index: 1;
   width: 600px;
   padding: 20px;
   margin: 3rem 0;
   border-radius: 30px;
-  border: solid #333333 5px;
+  border: solid #6D1919 5px;
   box-shadow: 0 2px 10px rgb(255, 255, 255);
-  background-color: hsl(0, 0%, 86%);
+  background-color: rgb(255, 255, 255);
 }
-
 h1 {
-  font-size: 40px;
   text-align: center;
-  margin: 0 0 40px;
-  color: #663399;
+  margin: 0 0 20px;
+  color: #CC0000;
 }
 .form-group{
   margin-bottom: 20px;
 }
 .form-group label{
-  font-size: 20px;
   font-weight: 600;
-  color: #44140c;
+  color: #4527a0;
   display: block;
   margin: 5px;
 }
 .form-group input,select,textarea{
-  border: 1px solid #094321;
+  border: 1px solid #263238;
   border-radius: 4px;
   display: block;
   width: 100%;
@@ -58,8 +59,8 @@ h1 {
   transition: all .2s;
 }
 .form-group small{
-  color: rgb(169, 172, 175);
-  font-size: 10px;
+  color: #616161;
+  font-size: 15px;
 }
 .form-group input:focus{
   outline: 0;
@@ -76,7 +77,7 @@ h1 {
   width: 100%;
 }
 .form-group input[type="submit"]:hover{
-  background-color: #62ffb1;
+  background-color: #CC0000;
 }
 /*------------------------------------------*/
 #submittedData{
@@ -118,4 +119,4 @@ h1 {
 #Dateimage img{
   border-radius: 20px;
 }
-/*------------------------------------------*/
+
