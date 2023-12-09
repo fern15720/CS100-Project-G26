@@ -31,25 +31,29 @@ body {
   padding: 20px;
   margin: 3rem 0;
   border-radius: 30px;
-  border: solid #6D1919 5px;
+  border: solid #4a148c 5px;
   box-shadow: 0 2px 10px rgb(255, 255, 255);
-  background-color: rgb(255, 255, 255);
+  background-color: #d4c9ea;
 }
+
 h1 {
   text-align: center;
   margin: 0 0 20px;
-  color: #CC0000;
+  color: #1a237e;
 }
 .form-group{
   margin-bottom: 20px;
 }
 .form-group label{
+  font-size: 17px;
   font-weight: 600;
   color: #4527a0;
   display: block;
   margin: 5px;
 }
-.form-group input,select,textarea{
+
+.form-group input,select{
+  background-color: #ede7f6;
   border: 1px solid #263238;
   border-radius: 4px;
   display: block;
@@ -59,13 +63,28 @@ h1 {
   transition: all .2s;
 }
 .form-group small{
-  color: #616161;
+  color: #757575;
   font-size: 15px;
 }
+
+/* Styling for the submit button */
+.form-group button[type="submit"] {
+  background-color: #b39ddb;
+  padding: 10px 15px;
+  border-color: black;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-group button[type="submit"]:hover{
+  background-color: #ede7f6;
+}
+
 .form-group input:focus{
   outline: 0;
-  border-color: #45e494;
+  border-color: #4dd0e1;
 }
+
 .form button{
   cursor: pointer;
   background-color: rgb(0, 113, 75);
@@ -76,22 +95,37 @@ h1 {
   margin-top: 20px;
   width: 100%;
 }
-.form-group input[type="submit"]:hover{
-  background-color: #CC0000;
-}
+
 /*------------------------------------------*/
-#submittedData{
-  z-index: 1;
-  display: none;
-  width: 600px;
-  padding: 20px;
-  text-align: center;
-  border-radius: 30px;
-  border: solid  #44C662 5px;
-  box-shadow: 0 2px 10px #E3F3AC;
-  background-color: rgb(255, 255, 255);
+#resultContainer{
+  margin-top: 70px;
 }
-#submittedData h2{
+
+#resultContainer h1 {
+  font-size: 25px;
+  text-align: center;
+  width: 150px;
+  background-color: #738ffe;
+  border-radius: 30px;
+  border: solid  #283593 3px;
+}
+
+
+#resultContainer p {
+  margin-left: 65px;
+  text-align: left;
+  padding-bottom: 10px;
+}
+#resultContainer img {
+  margin-left: 100px;
+  max-width: 350px;
+  height: auto;
+  display: block;
+  border: 5px solid #b39ddb;
+  border-radius: 20px;
+}
+
+/*#submittedData h2{
   padding: 5px;
   margin-bottom: 15px;
   border-radius: 20px;
@@ -118,5 +152,5 @@ h1 {
 }
 #Dateimage img{
   border-radius: 20px;
-}
+}*/
 

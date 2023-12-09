@@ -31,8 +31,8 @@
 
       <!-- Faculty Field -->
       <div class="form-group">
-        <label for="Faculty">Faculty</label>
-        <select id="Faculty of" name="Faculty" required>
+        <label for="faculty">Faculty</label>
+        <select id="faculty" name="faculty">
           <option value="" disabled selected>Select an option</option>
           <option value="Faculty of Law">Faculty of Law</option>
           <option value="Thammasat Business School">Thammasat Business School</option>
@@ -82,6 +82,12 @@
         <label for="activityType">Type of Work/Activity</label>
         <select id="activityType" name="activityType">
           <option value="" disabled selected>Select an option</option>
+        </select>
+      </div>
+      <!--div class="form-group">
+        <label for="activityType">Type of Work/Activity</label>
+        <select id="activityType" name="activityType">
+          <option value="" disabled selected>Select an option</option>
           <option value="Course">Course</option>
           <option value="Activity">Activity</option>
           <option value="Work">Work</option>
@@ -90,7 +96,7 @@
           <option value="Competition">Competition</option>
           <option value="Computer Science">Computer Science</option>
         </select>
-      </div>
+      </div> -->
 
       <!-- Academic Year Field -->
       <div class="form-group">
@@ -120,38 +126,39 @@
         </select>
       </div>
 
-      <!-- Date/Time Field -->
-      <div class="form-group">
-        <label for="startDate">Date/Time</label>
+       <!-- Start Date/Time Field -->
+       <div class="form-group">
+        <label for="startDate">Start Date/Time</label>
         <input type="datetime-local" id="startDate" name="startDate" />
+      </div>
+
+      <!-- End Date/Time Field -->
+      <div class="form-group">
+        <label for="endDate">End Date/Time</label>
+        <input type="datetime-local" id="endDate" name="endDate" />
       </div>
 
       <!-- Location Field -->
       <div class="form-group">
-        <label for="location">Location</label>
+        <label for="Location">Location</label>
         <input type="text" id="location" name="location" />
       </div>
 
       <!-- Description Field -->
       <div class="form-group">
-        <label for="imageInput">Image Activity </label>
-        <input type="file" id="imageInput" accept="image/*" required>
-    </div>
+        <label for="file">Image</label>
+        <input type="file" name="file" id="fileInput" accept=".jpeg, .jpg, .png" />
+      </div>
 
       <!-- Submit Button -->
       <div class="form-group">
-        <input type="submit" value="Submit"
-            onclick="return validation(); document.getElementById('myForm').style.display='none'">
+        <button type="submit" >Submit</button>
       </div>
     </form>
+    
+    <div id="resultContainer"></div>
   </div>
-
-  <!--ShowData-->
-  <div id="submittedData">
-    <div id="DataUser"></div>
-    <div id="DateActivity"></div>
-    <div id="Dateimage"></div>
-  </div>
+  
 
   <!-- JavaScript -->
   <script src="script.js"></script>
